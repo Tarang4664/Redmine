@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '>= 2.3.0', '< 2.7.0' if Bundler::VERSION >= '1.12.0'
 gem "bundler", ">= 1.5.0"
 
+gem ‘rspec’, :require => false, :group => :testgem ‘rspec_junit_formatter’, :require => false, :group => :test
+
 gem 'rails', '5.2.6'
 gem 'sprockets', '~> 3.7.2' if RUBY_VERSION < '2.5'
 gem 'globalid', '~> 0.4.2' if Gem.ruby_version < Gem::Version.new('2.6.0')
