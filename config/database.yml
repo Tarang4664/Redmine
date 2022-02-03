@@ -38,6 +38,7 @@ production:
  username: application_user
  password: password123
  database: application
+ schema: public
 
 
 #production:

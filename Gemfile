@@ -1,31 +1,39 @@
 source 'https://rubygems.org'
 
-ruby '>= 2.3.0', '< 2.7.0' if Bundler::VERSION >= '1.12.0'
-gem "bundler", ">= 1.5.0"
+ruby '>= 2.5.0', '< 3.2.0' 
+gem "bundler", ">= 1.12.0"
 
-gem ‘rspec’, :require => false, :group => :testgem ‘rspec_junit_formatter’, :require => false, :group => :test
+gem 'rails','6.1.4.4'
 
-gem 'rails', '5.2.6'
-gem 'sprockets', '~> 3.7.2' if RUBY_VERSION < '2.5'
+gem 'html-pipeline'
+gem 'sanitize'
+
+#gem 'sprockets', '~> 3.7.2' if RUBY_VERSION < '2.5'
 gem 'globalid', '~> 0.4.2' if Gem.ruby_version < Gem::Version.new('2.6.0')
-gem "rouge", "~> 3.12.0"
-gem "request_store", "~> 1.4.1"
-gem "mini_mime", "~> 1.0.1"
+gem "rouge", "~> 3.27.0"
+gem "request_store", "~> 1.5.0"
+gem "mini_mime", "~> 1.1.0"
 gem "actionpack-xml_parser"
-gem "roadie-rails", (RUBY_VERSION < "2.5" ? "~> 1.3.0" : "~> 2.1.0")
+gem "roadie-rails", (Gem.ruby_version < Gem::Version.new('2.6.0') ? '~> 2.2.0' :'~>2.3.0' )
 gem 'marcel'
 gem "mail", "~> 2.7.1"
-gem 'csv', (RUBY_VERSION < '2.5' ? ['>= 3.1.1', '<= 3.1.5'] : '~> 3.1.1')
-gem 'nokogiri', (RUBY_VERSION < '2.5' ? '~> 1.10.0' : '~> 1.11.1')
-gem "i18n", "~> 1.6.0"
+gem 'csv', '3.2.0'
+gem 'nokogiri', (Gem.ruby_version < Gem::Version.new('2.6.0') ? '~>1.12.2':'~>1.13.0')
+gem "i18n", "~> 1.8.2"
 gem "rbpdf", "~> 1.20.0"
+
+gem "addressable"
+gem "rubyzip","~>2.3.0"
+gem "net-smtp","~>0.3.0"
+gem "net-imap","~>0.2.2"
+gem "net-pop","~>0.1.1"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :x64_mingw, :mswin]
 
 # Optional gem for LDAP authentication
 group :ldap do
-  gem "net-ldap", "~> 0.16.0"
+  gem "net-ldap", "~> 0.17.0"
 end
 
 # Optional gem for OpenID authentication
@@ -36,7 +44,7 @@ end
 
 # Optional gem for exporting the gantt to a PNG file
 group :minimagick do
-  gem "mini_magick", "~> 4.9.5"
+  gem "mini_magick", "~> 4.11.0"
 end
 
 # Optional Markdown support, not for JRuby
@@ -55,10 +63,10 @@ if File.exist?(database_file)
   if adapters.any?
     adapters.each do |adapter|
       case adapter
-      when 'mysql2'
+      when /mysql2/
         gem "mysql2", "~> 0.5.0", :platforms => [:mri, :mingw, :x64_mingw]
-      when /postgresql/
-        gem "pg", "~> 1.1.4", :platforms => [:mri, :mingw, :x64_mingw]
+      when 'postgresql'
+        gem "pg", "~> 1.2.2", :platforms => [:mri, :mingw, :x64_mingw]
       when /sqlite3/
         gem "sqlite3", "~> 1.4.0", :platforms => [:mri, :mingw, :x64_mingw]
       when /sqlserver/
@@ -82,16 +90,16 @@ end
 group :test do
   gem "rails-dom-testing"
   gem 'mocha', '>= 1.4.0'
-  gem "simplecov", "~> 0.17.0", :require => false
+  gem "simplecov", "~> 0.21.2", :require => false
   gem "ffi", platforms: [:mingw, :x64_mingw, :mswin]
   # For running system tests
   gem 'puma', '~> 3.7'
-  gem "capybara", (RUBY_VERSION < "2.4" ? "~> 3.15.1" : "~> 3.25.0")
-  gem "selenium-webdriver"
+  gem "capybara", (Gem.ruby_version < Gem::Version.new('2.6.0')? '~>3.35.3':'~>3.36.0')
+  gem "selenium-webdriver","~>3.142.7"
   # RuboCop
-  gem 'rubocop', '~> 0.76.0'
-  gem 'rubocop-performance', '~> 1.5.0'
-  gem 'rubocop-rails', '~> 2.3.0'
+  gem 'rubocop', '~> 1.25.0'
+  gem 'rubocop-performance', '~> 1.13.0'
+  gem 'rubocop-rails', '~> 2.13.0'
 end
 
 local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
