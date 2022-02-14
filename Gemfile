@@ -29,8 +29,9 @@ gem "net-imap","~>0.2.2"
 gem "net-pop","~>0.1.1"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :x64_mingw, :mswin]
-
+gem 'tzinfo-data'
+gem "webrick"
+gem "pg","~> 1.3.1"
 # Optional gem for LDAP authentication
 group :ldap do
   gem "net-ldap", "~> 0.17.0"
@@ -66,7 +67,7 @@ if File.exist?(database_file)
       when /mysql2/
         gem "mysql2", "~> 0.5.0", :platforms => [:mri, :mingw, :x64_mingw]
       when 'postgresql'
-        gem "pg", "~> 1.2.2", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "pg", "~> 1.3.1", :platforms => [:mri, :mingw, :x64_mingw]
       when /sqlite3/
         gem "sqlite3", "~> 1.4.0", :platforms => [:mri, :mingw, :x64_mingw]
       when /sqlserver/
