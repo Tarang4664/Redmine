@@ -33,7 +33,7 @@
 # PostgreSQL configuration example
 production:
  adapter: postgresql
- host: database-2.cv9axuybvsog.us-east-2.rds.amazonaws.com
+ host: postgresqlforredminepoc.cdtrbmpt1jwp.us-east-2.rds.amazonaws.com
  port: 5432
  username: application_user
  password: password123
